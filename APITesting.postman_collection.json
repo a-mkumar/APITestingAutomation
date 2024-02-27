@@ -1,38 +1,21 @@
 {
 	"info": {
-		"_postman_id": "ced79cc6-dc34-4425-a7b7-facbbe08e881",
-		"name": "API Testing",
+		"_postman_id": "ac7fae76-f81f-43c4-b274-bad19e215d8c",
+		"name": "CNATS Testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "16825267",
-		"_collection_link": "https://interstellar-crater-618961.postman.co/workspace/Deepak~bf826488-9c9f-45b5-b1c9-8f9f987aa2b6/collection/16825267-ced79cc6-dc34-4425-a7b7-facbbe08e881?action=share&creator=16825267&source=collection_link"
+		"_exporter_id": "33137393"
 	},
 	"item": [
 		{
-			"name": "Get Req",
+			"name": "GET Request",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"Rachel\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Your test name\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.id).to.eql(2);\r",
-							"});\r",
-							"\r",
-							"var resp='{\"data\":{\"id\":2,\"email\":\"janet.weaver@reqres.in\",\"first_name\":\"Janet\",\"last_name\":\"Weaver\",\"avatar\":\"https://reqres.in/img/faces/2-image.jpg\"},\"support\":{\"url\":\"https://reqres.in/#support-heading\",\"text\":\"To keep ReqRes free, contributions towards server costs are appreciated!\"}}'\r",
-							" \r",
-							"pm.test(\"Body is correct\", function () {\r",
-							"    pm.response.to.have.body(resp);\r",
-							"});\r",
-							""
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -42,7 +25,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://reqres.in/api/users/2",
+					"raw": "https://reqres.in/api/users/5",
 					"protocol": "https",
 					"host": [
 						"reqres",
@@ -51,34 +34,20 @@
 					"path": [
 						"api",
 						"users",
-						"2"
+						"5"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "POST Req",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful POST request\", function () {\r",
-							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "New Request",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"data\": {\r\n        \"email\": \"smitha@test.in\",\r\n        \"first_name\": \"Smitha\",\r\n        \"last_name\": \"Menon\"\r\n    }\r\n}\r\n",
+					"raw": "{\r\n\r\n\"data\": {\r\n\r\n\"email\": \"manish@test.in\",\r\n\r\n\"first_name\": \"Manish\",\r\n\r\n\"last_name\": \"Kumar\"\r\n\r\n}\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -101,26 +70,114 @@
 			"response": []
 		},
 		{
-			"name": "Delete",
+			"name": "New Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": {\r\n        \"id\": 5,\r\n        \"email\": \"mk@test.in\",\r\n        \"first_name\": \"mk\",\r\n        \"last_name\": \"Name\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/5",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check JSON values",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(204);\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"\r",
+							"pm.expect(pm.response.text()).to.include(\"Rachel\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check JSON Data\", function () {\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.expect(jsonData.data.id).to.eql(12);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check last name \", function () {\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.expect(jsonData.data.last_name).to.eql(\"Howell\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check url \", function () {\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.expect(jsonData.support.url).contains(\"support-heading\");\r",
+							"\r",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{        \r\n    \"id\": 5\r\n}\r\n",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -128,7 +185,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://reqres.in/api/users",
+					"raw": "https://reqres.in/api/users/12",
 					"protocol": "https",
 					"host": [
 						"reqres",
@@ -136,9 +193,26 @@
 					],
 					"path": [
 						"api",
-						"users"
+						"users",
+						"12"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Full Body Match",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Test Post Req",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
